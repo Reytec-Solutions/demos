@@ -1,12 +1,20 @@
-# See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/v0.238.0/containers/dotnet/.devcontainer/base.Dockerfile
-
-# [Choice] .NET version: 6.0, 3.1, 6.0-bullseye, 3.1-bullseye, 6.0-focal, 3.1-focal
-ARG VARIANT="6.0-bullseye-slim"
+# [Choice] .NET version: 6.0-focal, 3.1-focal
+ARG VARIANT="6.0-focal"
 FROM mcr.microsoft.com/vscode/devcontainers/dotnet:0-${VARIANT}
 
 # [Choice] Node.js version: none, lts/*, 18, 16, 14
 ARG NODE_VERSION="none"
 RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSION} 2>&1"; fi
+
+# Install SQL Tools: SQLPackage and sqlcmd
+COPY mssql/installSQLtools.sh installSQLtools.sh
+RUN bash ./installSQLtools.sh \
+     && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts
+
+RUN dotnet dev-certs https
+RUN dotnet tool install -g dotnet-ef
+RUN dotnet tool install -g Microsoft.dotnet-httprepl
+ENV PATH $PATH:/root/.dotnet/tools
 
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \

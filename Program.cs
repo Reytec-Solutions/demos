@@ -1,31 +1,40 @@
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using demo1.Data;
+
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddDbContext<TodoContext>(options =>
+  options.UseSqlServer(builder.Configuration.GetConnectionString("choresDb")));
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 
-app.UseStaticFiles();
 
-app.UseRouting();
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<TodoContext>();
+    context.Database.Migrate();
+    if (!context.Chores.Any()){
+        context.Chores.AddRange(
+            new Chore { Title = "Clean up the house", Person = "Liam" },
+            new Chore { Title = "Take out the trash", Person = "Aria" },
+            new Chore { Title = "Mow the lawn", Person = "Liam" },
+            new Chore { Title = "Wash the dishes", Person = "Aria" }
+        );
+        context.SaveChanges();
+    }
+}
 
-app.MapBlazorHub();
-app.MapFallbackToPage("/_Host");
+
+app.MapGet("/chores", async (TodoContext db) => await db.Chores.ToListAsync());
 
 app.Run();
