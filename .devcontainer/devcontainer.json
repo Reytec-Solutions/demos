@@ -30,7 +30,8 @@
 			"extensions": [
 				"ms-dotnettools.csharp",
 				"ms-mssql.mssql",
-				"github.copilot"
+				"github.copilot",
+				"jspolancor.presentationmode"
 			]
 		}
 	},
