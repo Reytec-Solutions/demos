@@ -15,8 +15,8 @@ namespace todoapi.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Person = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    Person = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     DueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DoneDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
