@@ -22,6 +22,7 @@ public class Chore
     public string Title { get; set; }
     [Required, MaxLength(50)]
     public string Person { get; set; }
-    public DateTime DueDate { get; set; }
-    public DateTime DoneDate { get; set; }
+    public bool IsDone => DoneDate.HasValue;
+    public DateTime? DueDate { get; set; }
+    public DateTime? DoneDate { get; set; }
 }

@@ -1,10 +1,10 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.238.0/containers/dotnet-mssql
 {
 	"name": "C# (.NET) and MS SQL",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/workspace",
+	
 
 	// Configure tool-specific properties.
 	"customizations": {
@@ -23,7 +23,15 @@
 						"savePassword": false,
 						"profileName": "mssql-container"
 					}
-				]
+				],
+				"editor.fontSize": 20,
+				"editor.fontFamily": "Consolas, 'Courier New', monospace",
+				"terminal.integrated.fontSize": 20,
+				"terminal.integrated.defaultProfile.linux": "zsh",
+				"zenMode.centerLayout": false,
+				"workbench.panel.opensMaximized": "always",
+				"workbench.panel.defaultLocation": "left",
+				"presentationMode.zoomLevel": 3
 			},
 			
 			// Add the IDs of extensions you want installed when the container is created.
@@ -37,7 +45,7 @@
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [5000, 5001],
+	"forwardPorts": [5000, 5001],
  
 	// [Optional] To reuse of your local HTTPS dev cert:
 	//
@@ -59,6 +67,6 @@
 	//      3. Open a terminal in VS Code and run "mkdir -p /home/vscode/.aspnet/https && mv aspnetapp.pfx /home/vscode/.aspnet/https"
 
 	// postCreateCommand.sh parameters: $1=SA password, $2=dacpac path, $3=sql script(s) path
-	"postCreateCommand": "create.sh"
+	"postCreateCommand": "dotnet restore"
 
 }

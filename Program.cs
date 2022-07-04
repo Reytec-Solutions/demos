@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<TodoContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("choresDb")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("todoDb")));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -18,7 +18,7 @@ if (app.Environment.IsDevelopment())
     app.InitializeDatabase();
 }
 
-app.MapGet("/chores", 
-    async (TodoContext db) => await db.Chores.ToListAsync());
+app.MapGet("/chores", async (TodoContext db) =>
+    await db.Chores.Select(c => new { c.Id, c.Title, c.IsDone }).ToListAsync());
 
 app.Run();
