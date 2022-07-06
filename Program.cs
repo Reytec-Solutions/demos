@@ -18,6 +18,8 @@ if (app.Environment.IsDevelopment())
     app.InitializeDatabase();
 }
 
+//app.UseHttpsRedirection();
+
 app.MapGet("/chores", async (TodoContext db) =>
     await db.Chores.Select(c => new { c.Id, c.Title, c.IsDone }).ToListAsync());
 
