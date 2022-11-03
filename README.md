@@ -1,1 +1,1 @@
-# dotnet-ams-demos
+# dotnet-demos
