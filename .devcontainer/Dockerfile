@@ -10,5 +10,5 @@ RUN bash ./installSQLtools.sh \
 
 RUN dotnet dev-certs https
 RUN dotnet tool install -g dotnet-ef
-RUN dotnet tool install -g Microsoft.dotnet-httprepl
+# RUN dotnet tool install -g Microsoft.dotnet-httprepl
 ENV PATH $PATH:/root/.dotnet/tools
