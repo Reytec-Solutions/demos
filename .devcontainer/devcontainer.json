@@ -24,9 +24,9 @@
 						"profileName": "mssql-container"
 					}
 				],
-				// "workbench.sideBar.location": "right",
-				// "workbench.colorTheme": "Abyss",
-				// "editor.fontFamily": "Times New Roman",
+				 "workbench.sideBar.location": "right",
+				 "workbench.colorTheme": "Abyss",
+				 "editor.fontFamily": "Times New Roman",
 				"terminal.integrated.fontFamily": "monospace",
 				"editor.fontSize": 20,
 				"terminal.integrated.fontSize": 20,
