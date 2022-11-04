@@ -24,8 +24,10 @@
 						"profileName": "mssql-container"
 					}
 				],
+				"workbench.sideBar.location": "right",
+				"workbench.colorTheme": "Abyss",
 				"editor.fontSize": 20,
-				"editor.fontFamily": "Consolas, 'Courier New', monospace",
+				"editor.fontFamily": "Times New Roman",
 				"terminal.integrated.fontSize": 20,
 				"terminal.integrated.defaultProfile.linux": "zsh",
 				"zenMode.centerLayout": false,
