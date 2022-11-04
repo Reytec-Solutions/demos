@@ -27,6 +27,7 @@
 				"workbench.sideBar.location": "right",
 				"workbench.colorTheme": "Abyss",
 				"editor.fontSize": 20,
+				"terminal.integrated.fontFamily": "monospace",
 				"editor.fontFamily": "Times New Roman",
 				"terminal.integrated.fontSize": 20,
 				"terminal.integrated.defaultProfile.linux": "zsh",
