@@ -7,8 +7,6 @@ echo "Installing tools..."
 dotnet tool install -g dotnet-ef
 dotnet tool install -g Microsoft.dotnet-httprepl
 
-cd workspace
-
 echo "Restoring packages..."
 dotnet restore
 
